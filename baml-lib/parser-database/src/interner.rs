@@ -21,7 +21,6 @@ impl StringInterner {
 
     /// Get an already-interned string.
     pub(crate) fn lookup(&self, s: &str) -> Option<StringId> {
-        dbg!(s);
         self.map.get_index_of(s).map(StringId)
     }
 

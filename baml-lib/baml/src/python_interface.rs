@@ -1,9 +1,13 @@
-use pyo3::{types::PyString, PyErr};
+use pyo3::{create_exception, PyErr};
 
 use crate::BamlContext;
 
-fn pyerr_from_anyhow(e: anyhow::Error) -> PyErr {
-    PyErr::new::<PyString, _>(e.to_string())
+create_exception!(lmnr_baml, LaminarBamlError, pyo3::exceptions::PyException);
+
+impl LaminarBamlError {
+    fn from_anyhow(err: anyhow::Error) -> PyErr {
+        PyErr::new::<LaminarBamlError, _>(format!("{:?}", err))
+    }
 }
 
 #[pyo3::pyfunction]
@@ -12,9 +16,11 @@ pub fn render_prompt(
     schema_string: String,
     target_name: Option<String>,
 ) -> pyo3::prelude::PyResult<String> {
-    let baml_context =
-        BamlContext::try_from_schema(&schema_string, target_name).map_err(pyerr_from_anyhow)?;
-    baml_context.render_prompt().map_err(pyerr_from_anyhow)
+    let baml_context = BamlContext::try_from_schema(&schema_string, target_name)
+        .map_err(LaminarBamlError::from_anyhow)?;
+    baml_context
+        .render_prompt()
+        .map_err(LaminarBamlError::from_anyhow)
 }
 
 #[pyo3::pyfunction]
@@ -24,9 +30,9 @@ pub fn validate_result(
     result: String,
     target_name: Option<String>,
 ) -> pyo3::prelude::PyResult<String> {
-    let baml_context =
-        BamlContext::try_from_schema(&schema_string, target_name).map_err(pyerr_from_anyhow)?;
+    let baml_context = BamlContext::try_from_schema(&schema_string, target_name)
+        .map_err(LaminarBamlError::from_anyhow)?;
     baml_context
         .validate_result(&result)
-        .map_err(pyerr_from_anyhow)
+        .map_err(LaminarBamlError::from_anyhow)
 }
