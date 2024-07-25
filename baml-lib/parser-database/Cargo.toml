@@ -1,0 +1,27 @@
+[package]
+edition = "2021"
+name = "internal-baml-parser-database"
+version.workspace = true
+authors.workspace = true
+description.workspace = true
+
+license-file.workspace = true
+
+[dependencies]
+baml-types = { path = "../baml-types" }
+internal-baml-jinja = { path = "../jinja" }
+internal-baml-diagnostics = { path = "../diagnostics" }
+internal-baml-schema-ast = { path = "../schema-ast" }
+internal-baml-prompt-parser = { path = "../prompt-parser" }
+
+either = "1.6.1"
+indexmap = "1.8.0"
+rustc-hash = "1.1.0"
+colored = "2.0.0"
+log = "0.4.20"
+serde.workspace = true
+serde_json.workspace = true
+regex = "1.10.2"
+
+[features]
+default = []
