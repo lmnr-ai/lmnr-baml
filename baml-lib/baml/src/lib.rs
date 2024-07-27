@@ -32,16 +32,16 @@ pub fn validate(schema_string: &String) -> ValidatedSchema {
 // UNCOMMENT THIS BLOCK TO ENABLE PYTHON INTERFACE
 // Laminar specific Python interface
 
-// use pyo3::prelude::PyModuleMethods;
-// use python_interface::{render_prompt, validate_result};
-// mod python_interface;
+use pyo3::prelude::PyModuleMethods;
+use python_interface::{render_prompt, validate_result};
+mod python_interface;
 
-// #[pyo3::prelude::pymodule]
-// fn lmnr_baml(m: &pyo3::Bound<'_, pyo3::prelude::PyModule>) -> pyo3::PyResult<()> {
-//     m.add_function(pyo3::wrap_pyfunction!(render_prompt, m)?)?;
-//     m.add_function(pyo3::wrap_pyfunction!(validate_result, m)?)?;
-//     Ok(())
-// }
+#[pyo3::prelude::pymodule]
+fn lmnr_baml(m: &pyo3::Bound<'_, pyo3::prelude::PyModule>) -> pyo3::PyResult<()> {
+    m.add_function(pyo3::wrap_pyfunction!(render_prompt, m)?)?;
+    m.add_function(pyo3::wrap_pyfunction!(validate_result, m)?)?;
+    Ok(())
+}
 
 // -------------------------------------------------------------------------------------------------
 // Laminar specific structs and functions
