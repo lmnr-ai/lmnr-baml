@@ -3,7 +3,7 @@
 
 use baml_types::{BamlValue, FieldType};
 use either::Either;
-use internal_baml_core::ast::{WithDocumentation, WithName};
+use internal_baml_core::ast::{WithAttributes, WithName};
 pub use internal_baml_core::{
     self,
     internal_baml_diagnostics::{self, Diagnostics, SourceFile},
@@ -146,8 +146,15 @@ impl BamlContext {
                     .iter_values()
                     .map(|(_id, v)| {
                         let name = internal_baml_jinja::Name::new(v.name().to_string());
-                        let doc = v.documentation().map(|d| d.to_string());
-                        (name, doc)
+                        let description = v
+                            .attributes()
+                            .iter()
+                            .find(|a| a.name() == "description")
+                            .and_then(|a| a.arguments.iter().next())
+                            .and_then(|(_id, val)| val.value.as_string_value())
+                            .map(|ast_string_val| ast_string_val.0.to_string());
+                        // let doc = v.documentation().map(|d| d.to_string());
+                        (name, description)
                     })
                     .collect::<Vec<_>>();
                 internal_baml_jinja::Enum {
@@ -167,8 +174,14 @@ impl BamlContext {
                     .map(|(_id, f)| {
                         let name = internal_baml_jinja::Name::new(f.name().to_string());
                         let t = validated_schema.db.to_raw_field_type(&f.field_type);
-                        let doc = f.documentation().map(|d| d.to_string());
-                        (name, t, doc)
+                        let description = f
+                            .attributes()
+                            .iter()
+                            .find(|a| a.name() == "description")
+                            .and_then(|a| a.arguments.iter().next())
+                            .and_then(|(_id, val)| val.value.as_string_value())
+                            .map(|ast_string_val| ast_string_val.0.to_string());
+                        (name, t, description)
                     })
                     .collect::<Vec<_>>();
                 internal_baml_jinja::Class {
