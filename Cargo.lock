@@ -74,7 +74,7 @@ checksum = "0c4b4d0bd25bd0b74681c0ad21497610ce1b7c91b1022cd21c80c6fbdd9476b0"
 
 [[package]]
 name = "baml-types"
-version = "0.40.0"
+version = "0.40.1"
 dependencies = [
  "indexmap 2.2.6",
  "minijinja",
@@ -391,7 +391,7 @@ checksum = "b248f5224d1d606005e02c97f5aa4e88eeb230488bcc03bc9ca4d7991399f2b5"
 
 [[package]]
 name = "internal-baml-core"
-version = "0.40.0"
+version = "0.40.1"
 dependencies = [
  "anyhow",
  "baml-types",
@@ -421,7 +421,7 @@ dependencies = [
 
 [[package]]
 name = "internal-baml-diagnostics"
-version = "0.40.0"
+version = "0.40.1"
 dependencies = [
  "anyhow",
  "pest",
@@ -430,7 +430,7 @@ dependencies = [
 
 [[package]]
 name = "internal-baml-jinja"
-version = "0.40.0"
+version = "0.40.1"
 dependencies = [
  "anyhow",
  "baml-types",
@@ -446,7 +446,7 @@ dependencies = [
 
 [[package]]
 name = "internal-baml-parser-database"
-version = "0.40.0"
+version = "0.40.1"
 dependencies = [
  "baml-types",
  "colored",
@@ -465,7 +465,7 @@ dependencies = [
 
 [[package]]
 name = "internal-baml-prompt-parser"
-version = "0.40.0"
+version = "0.40.1"
 dependencies = [
  "internal-baml-diagnostics",
  "internal-baml-schema-ast",
@@ -477,7 +477,7 @@ dependencies = [
 
 [[package]]
 name = "internal-baml-schema-ast"
-version = "0.40.0"
+version = "0.40.1"
 dependencies = [
  "baml-types",
  "internal-baml-diagnostics",
@@ -501,7 +501,7 @@ checksum = "49f1f14873335454500d59611f1cf4a4b0f786f9ac11f4312a78e4cf2566695b"
 
 [[package]]
 name = "jsonish"
-version = "0.40.0"
+version = "0.40.1"
 dependencies = [
  "anyhow",
  "baml-types",
@@ -532,7 +532,7 @@ checksum = "97b3888a4aecf77e811145cadf6eef5901f4782c53886191b2f693f24761847c"
 
 [[package]]
 name = "lmnr-baml"
-version = "0.40.0"
+version = "0.40.1"
 dependencies = [
  "anyhow",
  "baml-types",

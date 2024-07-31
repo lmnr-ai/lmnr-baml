@@ -3,7 +3,7 @@
 
 use baml_types::{BamlValue, FieldType};
 use either::Either;
-use internal_baml_core::ast::{WithAttributes, WithDocumentation, WithName};
+use internal_baml_core::ast::{WithAttributes, WithName};
 pub use internal_baml_core::{
     self,
     internal_baml_diagnostics::{self, Diagnostics, SourceFile},
